@@ -1,9 +1,10 @@
 package com.pm.reservation.controller;
 
 import com.pm.reservation.Service.ReservationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.pm.reservation.dto.ReservationRequest;
+import com.pm.reservation.dto.ReservationResponse;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/reservations")
@@ -17,6 +18,11 @@ public class ReservationController {
     @GetMapping("/health")
     public String health() {
         return "OK";
+    }
+
+    @PostMapping
+    public ReservationResponse create(@Valid @RequestBody ReservationRequest request){
+        return reservationService.createReservation(request);
     }
 
 }
