@@ -25,6 +25,9 @@ A backend-focused RESTful API built with **Java 17** and **Spring Boot**, design
 
 ## 📖 API Documentation
 
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+
 ### Reservation Endpoints
 
 | Method | Endpoint | Description |
