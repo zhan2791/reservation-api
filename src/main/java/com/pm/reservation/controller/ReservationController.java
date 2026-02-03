@@ -7,6 +7,8 @@ import com.pm.reservation.util.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/reservations")
 public class ReservationController {
@@ -30,5 +32,15 @@ public class ReservationController {
                 reservationService.createReservation(request);
 
         return ApiResponse.ok(response);
+    }
+
+    @GetMapping
+    public ApiResponse<List<ReservationResponse>> list() {
+        return ApiResponse.ok(reservationService.listReservations());
+    }
+
+    @GetMapping("/{id}")
+    public ApiResponse<ReservationResponse> get(@PathVariable Long id) {
+        return ApiResponse.ok(reservationService.getReservation(id));
     }
 }
