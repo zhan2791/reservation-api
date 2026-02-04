@@ -1,10 +1,13 @@
 package com.pm.reservation.controller;
 
 import com.pm.reservation.Service.ReservationService;
+import com.pm.reservation.dto.PageResponse;
 import com.pm.reservation.dto.ReservationRequest;
 import com.pm.reservation.dto.ReservationResponse;
 import com.pm.reservation.util.ApiResponse;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +38,8 @@ public class ReservationController {
     }
 
     @GetMapping
-    public ApiResponse<List<ReservationResponse>> list() {
-        return ApiResponse.ok(reservationService.listReservations());
+    public ApiResponse<PageResponse<ReservationResponse>> list(@PageableDefault(size = 10, sort = "id") Pageable pageable) {
+        return ApiResponse.ok(reservationService.listReservations(pageable));
     }
 
     @GetMapping("/{id}")
